@@ -12,7 +12,7 @@ This project provides a machine learning web application that predicts breast ca
 - **Random Forest** – Model used for classification  
 - **Remote CSV** – Dataset is fetched from a public GitHub URL
 
-## 1️⃣ Input Features
+## 1️ Input Features
 
 The model uses these 5 features entered by the user:
 
@@ -24,7 +24,7 @@ The model uses these 5 features entered by the user:
 
 These values are passed to the model to classify the tumor as malignant or benign.
 
-## 2️⃣ Running the Application
+## 2️ Running the Application
 
 ### 🧾 Clone the Repository
 ```bash
@@ -45,7 +45,7 @@ python app.py
 The app will start at:  
 [http://127.0.0.1:5000](http://127.0.0.1:5000)
 
-## 3️⃣ Basic Workflow
+## 3️ Basic Workflow
 
 - Launch the app using `python app.py`  
 - Open browser and go to [http://127.0.0.1:5000](http://127.0.0.1:5000)  
@@ -53,7 +53,7 @@ The app will start at:
 - Click **Submit**  
 - View prediction (Malignant/Benign) and confidence level
 
-## 5️⃣ Dataset Reference
+## 4 Dataset Reference
 
 This app uses the Breast Cancer Wisconsin (Diagnostic) Dataset:  
 🔗 https://github.com/apogiatzis/breast-cancer-azure-ml-notebook/blob/master/breast-cancer-data.csv
