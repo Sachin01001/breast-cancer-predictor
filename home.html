@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breast Cancer Prediction - App</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <style>
+        /* General Body Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa; /* Light grey background */
+            color: #343a40; /* Dark grey text */
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #007bff !important; /* Bootstrap primary blue */
+            padding: 20px 0;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+        }
+
+        /* Main Content Container */
+        .container {
+            max-width: 960px; /* Limit main content width for better readability */
+        }
+
+        /* Form Section Styling */
+        .prediction-form-section,
+        .prediction-results-section {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+
+        .prediction-form-section h2,
+        .prediction-results-section h2 {
+            color: #007bff;
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+        }
+
+        /* Form Group Layout Adjustments (for input size) */
+        .form-group .col-form-label {
+            text-align: right; /* Align labels to the right */
+            padding-right: 15px; /* Add some space between label and input */
+        }
+
+        /* On small screens, make labels left-aligned */
+        @media (max-width: 575.98px) {
+            .form-group .col-form-label {
+                text-align: left;
+                padding-right: 0;
+                margin-bottom: 5px; /* Add some space below label on small screens */
+            }
+        }
+
+        /* Input Field Specific Styling */
+        .form-control {
+            border-radius: 5px;
+            padding: 10px 15px;
+            font-size: 1rem;
+        }
+
+        /* Button Styling */
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #004085;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #e9ecef; /* Light grey background */
+            padding: 20px 0;
+            margin-top: 50px;
+            border-top: 1px solid #dee2e6;
+            color: #6c757d;
+        }
+
+        footer p {
+            margin-bottom: 0;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <header class="bg-primary text-white text-center py-3">
+        <h1>Breast Cancer Prediction</h1>
+    </header>
+
+    <main class="container mt-5">
+        <section class="prediction-form-section">
+            <h2 class="text-center mb-4">Enter Patient Data</h2>
+            <form id="predictionForm" action="http://localhost:5000" method="POST">
+                <div class="form-group row">
+                    <label for="radius_mean" class="col-sm-4 col-md-3 col-form-label">Radius Mean:</label>
+                    <div class="col-sm-8 col-md-6">
+                        <input type="number" step="any" class="form-control" id="radius_mean" name="query1" value="{{query1}}" aria-label="Enter radius mean" required>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="texture_mean" class="col-sm-4 col-md-3 col-form-label">Texture Mean:</label>
+                    <div class="col-sm-8 col-md-6">
+                        <input type="number" step="any" class="form-control" id="texture_mean" name="query2" value="{{query2}}" aria-label="Enter texture mean" required>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="perimeter_mean" class="col-sm-4 col-md-3 col-form-label">Perimeter Mean:</label>
+                    <div class="col-sm-8 col-md-6">
+                        <input type="number" step="any" class="form-control" id="perimeter_mean" name="query3" value="{{query3}}" aria-label="Enter perimeter mean" required>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="smoothness_mean" class="col-sm-4 col-md-3 col-form-label">Smoothness Mean:</label>
+                    <div class="col-sm-8 col-md-6">
+                        <input type="number" step="any" class="form-control" id="smoothness_mean" name="query4" value="{{query4}}" aria-label="Enter smoothness mean" required>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="compactness_mean" class="col-sm-4 col-md-3 col-form-label">Compactness Mean:</label>
+                    <div class="col-sm-8 col-md-6">
+                        <input type="number" step="any" class="form-control" id="compactness_mean" name="query5" value="{{query5}}" aria-label="Enter compactness mean" required>
+                    </div>
+                </div>
+
+                <div class="text-center mt-4">
+                    <button type="submit" class="btn btn-primary btn-lg">Get Prediction</button>
+                </div>
+            </form>
+        </section>
+
+        {% if output1 or output2 %}
+        <section class="prediction-results-section mt-5 p-4 border rounded shadow-sm">
+            <h2 class="text-center mb-3">Prediction Results</h2>
+            {% if output1 %}
+            <div class="form-group row">
+                <label for="predictionOutput" class="col-sm-4 col-md-3 col-form-label font-weight-bold">Prediction:</label>
+                <div class="col-sm-8 col-md-6">
+                    <textarea class="form-control" id="predictionOutput" rows="2" readonly aria-label="Prediction result">{{output1}}</textarea>
+                </div>
+            </div>
+            {% endif %}
+            
+            {% if output2 %}
+            <div class="form-group row mt-3">
+                <label for="confidenceOutput" class="col-sm-4 col-md-3 col-form-label font-weight-bold">Confidence:</label>
+                <div class="col-sm-8 col-md-6">
+                    <textarea class="form-control" id="confidenceOutput" rows="2" readonly aria-label="Confidence score">{{output2}}</textarea>
+                </div>
+            </div>
+            {% endif %}
+        </section>
+        {% endif %}
+    </main>
+
+    <footer class="bg-light text-center py-3 mt-5">
+        <p>&copy; 2025 Breast Cancer Prediction App. All rights reserved.</p>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const predictionForm = document.getElementById('predictionForm');
+
+            if (predictionForm) {
+                predictionForm.addEventListener('submit', function(event) {
+                    // This is where you could add client-side validation if needed.
+                    // For instance, to ensure inputs are positive or within a range.
+                    // If validation fails, call event.preventDefault();
+
+                    console.log('Form submitted!');
+                    // Note: Your Flask backend is expecting a standard form POST,
+                    // so no AJAX (fetch API) is used here for simplicity.
+                    // The page will reload after submission with results.
+                });
+            }
+        });
+    </script>
+</body>
+</html>
