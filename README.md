@@ -1,7 +1,6 @@
 # 🩺 Breast Cancer Predictor
 
-This project provides a machine learning web application that predicts breast cancer diagnosis (malignant/benign) using clinical measurements from the Wisconsin Breast Cancer Dataset. Built with Flask and Scikit-learn, it offers medical professionals an intuitive tool for preliminary assessment.
-
+This project is a simple web app that predicts if a tumor is malignant or benign using a machine learning model trained on the Wisconsin Breast Cancer Dataset. It is built using Flask and Scikit-learn.
 
 ## 🚀 Key Technologies
 
