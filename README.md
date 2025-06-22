@@ -1,4 +1,4 @@
-# 🩺 Breast Cancer Prediction Web Application
+# 🩺 Breast Cancer Predictior
 
 This project provides a machine learning web application that predicts breast cancer diagnosis (malignant/benign) using clinical measurements from the Wisconsin Breast Cancer Dataset. Built with Flask and Scikit-learn, it offers medical professionals an intuitive tool for preliminary assessment.
 
@@ -44,4 +44,18 @@ python app.py
 
 The app will start at:  
 [http://127.0.0.1:5000](http://127.0.0.1:5000)
+
+## 3️⃣ Basic Workflow
+
+- Launch the app using `python app.py`  
+- Open browser and go to [http://127.0.0.1:5000](http://127.0.0.1:5000)  
+- Enter 5 input values  
+- Click **Submit**  
+- View prediction (Malignant/Benign) and confidence level
+
+## 5️⃣ Dataset Reference
+
+This app uses the Breast Cancer Wisconsin (Diagnostic) Dataset:  
+🔗 https://github.com/apogiatzis/breast-cancer-azure-ml-notebook/blob/master/breast-cancer-data.csv
+
 
